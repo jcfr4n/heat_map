@@ -1,0 +1,17 @@
+html {
+    min-height: 100%;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+}
+svg {
+    background-color:darkgrey;
+}
+
+h1, h2 {
+    text-align: center;
+}
