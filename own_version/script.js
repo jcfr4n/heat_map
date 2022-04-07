@@ -1,14 +1,32 @@
 // jshint esversion:6
 
+/* This project has been did whith the guidance of https://www.youtube.com/watch?v=6uM_wLOayYI and, of course, whith my own addings.
+ */
+
+/* Este proyecto ha sido realizado con la guía de https://www.youtube.com/watch?v=6uM_wLOayYI y, por supuesto, con mis propios aportes
+ */
+
 let url =
   "https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/global-temperature.json";
+
+// ########################################################################
+
+// This is the request for the JSON file, and the call to the callback function, which is the one that controls the process, according to how we have programmed it.
+
+// Esta es la solicitud del archivo JSON, y la llamada a la función callback, que es la que controla el proceso, según como lo hayamos programado
 
 d3.json(url)
   .then((data) => callback(data))
   .catch((error) => console.log(error));
 
+// ########################################################################
+
 function callback(data) {
-  console.log(data);
+  // ########################################################################
+
+  // Here, we define all vars, constants, dictionaries and other all things what we'll need.
+
+  // Aquí, definimos todas las variables, constantes, diccionarios y otras cosas que necesitaremos.
 
   let baseTemp = data.baseTemperature;
   let values = data.monthlyVariance;
@@ -30,7 +48,11 @@ function callback(data) {
 
   let svg = d3.select("#svg");
 
+  svg.attr("width", width).attr("height", height);
+
   let legend = d3.select("#legend");
+
+  legend.attr("width", width / 2).attr("height", height / 8);
 
   let tooltip = d3
     .select("body")
@@ -53,9 +75,11 @@ function callback(data) {
     "December",
   ];
 
-  svg.attr("width", width).attr("height", height);
+  // ########################################################################
 
-  legend.attr("width", width / 2).attr("height", height / 8);
+  // Here, we generate the scales to use.
+
+  // Aquí, definimos las escalas a usar
 
   let generateScales = () => {
     minYear = d3.min(values, (item) => {
@@ -83,6 +107,12 @@ function callback(data) {
 
     legendYScale = d3.scaleLinear().domain([0, 1]).range([20, 40]);
   };
+
+  // ########################################################################
+
+  // Here, we draw the "cell" elements, assign them  their behavior and draw too the "legend" element.
+
+  // Aquí, pintamos los elementos "cell", les asignamos su comportamiento y pintamos también el elemento "legend".
 
   let drawCells = () => {
     svg
@@ -158,6 +188,12 @@ function callback(data) {
       });
   };
 
+  // ########################################################################
+
+  // Generate axis.
+
+  // Generar ejes.
+
   let generateAxes = () => {
     let xAxis = d3.axisBottom(xScale).tickFormat(d3.format("d"));
     let yAxis = d3.axisLeft(yScale).tickFormat(d3.timeFormat("%B"));
@@ -182,9 +218,21 @@ function callback(data) {
       .attr("transform", "translate(0," + 40 + ")");
   };
 
+  // ########################################################################
+
+  // Call the diferent functions.
+
+  // Llamar las diferentes funciones.
+
   generateScales();
   generateAxes();
   drawCells();
+
+  // ########################################################################
+
+  // Add text to "description" element.
+
+  // Agregar texto al elemento "description".
 
   d3.select("#description").html("Temperatura Base: " + baseTemp);
 }
