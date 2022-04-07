@@ -16,9 +16,24 @@ h1, h2 {
     text-align: center;
 }
 
-#tooltip {
-    visibility: hidden;
-    background-color: aqua;
-    width: auto;
-    height: auto;
+.cell:hover {
+    fill:white;
+    stroke: black;
+    stroke-width: 2px;
 }
+
+#tooltip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    text-align: center;
+    width: 200px;
+    height: auto;
+    padding: 2px;
+    font: 12px;
+    background: rgba(233, 218, 7, 0.822);
+    box-shadow: 1px 1px 10px;
+    border-radius: 2px;
+    pointer-events: none;
+  }

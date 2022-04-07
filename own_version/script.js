@@ -35,7 +35,11 @@ function callback(data){
 
   let legend = d3.select('#legend');
 
-  let tooltip = d3.select('#tooltip');
+  let tooltip = d3
+  .select("body")
+  .append("div")
+  .attr("id", "tooltip")
+  .style("opacity", 0);
 
   let monthName = [
     "January",
@@ -120,20 +124,18 @@ function callback(data){
         return xScale(item.year);
       })
       .on('mouseover',(event, item)=>{
+        tooltip.transition().duration(500).style('opacity',0.9);
+        
         tooltip
-          .transition()
-          .duration(500)
-          .style('visibility','visible');
-        tooltip
-          .attr('data-year', item.year);
-        tooltip
-          .text(item.year + '-' + monthName[item.month - 1]);
+          .html("Año: " + item.year + "<br>Mes: " + monthName[item.month] + "<br>Temperatura: " + (baseTemp + item.variance))
+          .attr("id", "tooltip")
+          .attr("data-Year", item.year)
+          .style("left", event.pageX + 20 + "px")
+          .style("top", event.pageY - 30 + "px");
+
       })
       .on('mouseout',(event, item)=>{
-        tooltip
-          .transition()
-          .duration(500)
-          .style('visibility','hidden');
+        tooltip.transition().duration(500).style('opacity',0);
       })
       
       ;
