@@ -1,6 +1,7 @@
 html {
     min-height: 100%;
 }
+
 body {
     display: flex;
     flex-direction: column;
@@ -8,16 +9,18 @@ body {
     align-items: center;
     min-height: 100%;
 }
+
 svg {
-    background-color:darkgrey;
+    background-color: darkgrey;
 }
 
-h1, h2 {
+h1,
+h2 {
     text-align: center;
 }
 
 .cell:hover {
-    fill:white;
+    fill: white;
     stroke: black;
     stroke-width: 2px;
 }
@@ -36,4 +39,4 @@ h1, h2 {
     box-shadow: 1px 1px 10px;
     border-radius: 2px;
     pointer-events: none;
-  }
+}
