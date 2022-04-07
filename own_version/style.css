@@ -15,3 +15,10 @@ svg {
 h1, h2 {
     text-align: center;
 }
+
+#tooltip {
+    visibility: hidden;
+    background-color: aqua;
+    width: auto;
+    height: auto;
+}
