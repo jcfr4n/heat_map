@@ -234,5 +234,6 @@ function callback(data) {
 
   // Agregar texto al elemento "description".
 
+  
   d3.select("#description").html("Temperatura Base: " + baseTemp);
 }
